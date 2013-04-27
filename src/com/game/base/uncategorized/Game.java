@@ -18,6 +18,8 @@ public class Game
     private GOBall ball;
     private GOEnemyBall enemyBall1;
     private GOBall ball2;
+    private GOProjectile ballProjectile;
+    private static float i = 1;
 
     
     public Game()
@@ -27,10 +29,12 @@ public class Game
         ball = new GOBall(Display.getWidth() / 2 - GOBall.SIZE /2, Display.getHeight() /2 - GOBall.SIZE /2);
         ball2 = new GOBall(Display.getWidth() / 2 - GOBall.SIZE /2, Display.getHeight() /2 - GOBall.SIZE /2);
         enemyBall1 = new GOEnemyBall(ball, 0, 0);
+        ballProjectile = new GOProjectile();
         
         objects.add(ball);
         objects.add(ball2);
         objects.add(enemyBall1);
+        objects.add(ballProjectile);
     }
     
     public void getInput()
@@ -52,6 +56,17 @@ public class Game
             ball2.moveX(-1);
         if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT))
             ball2.moveX(1);
+        
+        if(Keyboard.isKeyDown(Keyboard.KEY_R))
+        {
+              i *= -1;
+              enemyBall1.setBallDirection(i);
+        }
+        
+        if(Keyboard.isKeyDown(Keyboard.KEY_F))
+        {
+            ballProjectile.shoot(ball);
+        }
     }
     
     public void update()
@@ -59,6 +74,7 @@ public class Game
         for(GameObject go : objects)
         {
             enemyBall1.setBallSpeed(ball, ball2);
+            ballProjectile.outOfArea();
             go.update();
         }
     }

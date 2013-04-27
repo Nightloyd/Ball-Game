@@ -15,6 +15,7 @@ public class GOEnemyBall extends GameObject
     
     private static float ballSpeedX;
     private static float ballSpeedY;
+    private static float ballDirection;
 
     public GOEnemyBall(GOBall ball, float x, float y)
     {
@@ -33,9 +34,9 @@ public class GOEnemyBall extends GameObject
     
     public void setBallSpeed(GOBall ball, GOBall ball2)
     {
-
-            ballSpeedX = ((ball.getX()-x)/20)+((ball2.getX()-x)/20);
-            ballSpeedY = ((ball.getY()-y)/20)+((ball2.getY()-y)/20);
+            
+            ballSpeedX = ballDirection*((ball.getX()-x)/20)/*+((ball2.getX()-x)/20)*/;
+            ballSpeedY = ballDirection*((ball.getY()-y)/20)/*+((ball2.getY()-y)/20)*/;
 
         
         if(ballSpeedX > 4f)
@@ -46,6 +47,11 @@ public class GOEnemyBall extends GameObject
             ballSpeedY = 4f;
         if(ballSpeedY < -4f)
             ballSpeedY = -4f;
+    }
+    
+    public void setBallDirection(float i)
+    {
+        ballDirection = i;
     }
     
 
