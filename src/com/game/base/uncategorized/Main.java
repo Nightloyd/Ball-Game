@@ -91,7 +91,7 @@ public class Main
     {
         try 
         {
-            Display.setDisplayMode(new DisplayMode(1920,1080));
+            Display.setDisplayMode(new DisplayMode(800,600));
             Display.create();
             Display.setVSyncEnabled(true);
         } 

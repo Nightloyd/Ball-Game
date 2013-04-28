@@ -27,12 +27,12 @@ public class Game
         objects = new ArrayList<GameObject>();
         
         ball = new GOBall(Display.getWidth() / 2 - GOBall.SIZE /2, Display.getHeight() /2 - GOBall.SIZE /2);
-        ball2 = new GOBall(Display.getWidth() / 2 - GOBall.SIZE /2, Display.getHeight() /2 - GOBall.SIZE /2);
+        //ball2 = new GOBall(Display.getWidth() / 2 - GOBall.SIZE /2, Display.getHeight() /2 - GOBall.SIZE /2);
         enemyBall1 = new GOEnemyBall(ball, 0, 0);
         ballProjectile = new GOProjectile();
         
         objects.add(ball);
-        objects.add(ball2);
+        //objects.add(ball2);
         objects.add(enemyBall1);
         objects.add(ballProjectile);
     }
@@ -48,15 +48,27 @@ public class Game
         if(Keyboard.isKeyDown(Keyboard.KEY_D))
             ball.moveX(1);
         
-        if(Keyboard.isKeyDown(Keyboard.KEY_UP))
-            ball2.moveY(1);
-        if(Keyboard.isKeyDown(Keyboard.KEY_DOWN))
-            ball2.moveY(-1);
-        if(Keyboard.isKeyDown(Keyboard.KEY_LEFT))
-            ball2.moveX(-1);
-        if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT))
-            ball2.moveX(1);
-        
+        if(Keyboard.isKeyDown(Keyboard.KEY_UP) && (ballProjectile.getIsUsed() == false))
+        {
+            ballProjectile.projectileDirec(0,1);
+            ballProjectile.shoot(ball);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_DOWN) && (ballProjectile.getIsUsed() == false))
+        {       
+            ballProjectile.projectileDirec(0, -1);
+            ballProjectile.shoot(ball);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_LEFT) && (ballProjectile.getIsUsed() == false))
+        {
+            ballProjectile.projectileDirec(-1, 0);
+            ballProjectile.shoot(ball);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT) && (ballProjectile.getIsUsed() == false))
+        {
+            ballProjectile.projectileDirec(1, 0);
+            ballProjectile.shoot(ball);
+        }
+            
         if(Keyboard.isKeyDown(Keyboard.KEY_R))
         {
               i *= -1;
@@ -65,7 +77,7 @@ public class Game
         
         if(Keyboard.isKeyDown(Keyboard.KEY_F))
         {
-            ballProjectile.shoot(ball);
+            
         }
     }
     
