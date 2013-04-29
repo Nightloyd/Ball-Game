@@ -40,7 +40,7 @@ public class GOProjectile extends GameObject
         if(used != true)
         {
             x = ball.x + ball.SIZE/2;
-            y = ball.y;
+            y = ball.y + ball.SIZE/2;
             used = true;
         }
     }

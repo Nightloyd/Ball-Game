@@ -4,7 +4,6 @@
  */
 package com.game.base.uncategorized;
 
-import static org.lwjgl.opengl.GL11.glClearColor;
 
 /**
  *
